@@ -36,15 +36,24 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Movement\Mover.cs" />
      <Compile Include="Assets\Scripts\Core\FollowCamera.cs" />
+     <Compile Include="Assets\Scripts\Control\PatrolPath.cs" />
      <Compile Include="Assets\Scripts\Control\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\Combat\Fighter.cs" />
+     <Compile Include="Assets\Scripts\Core\Health.cs" />
      <Compile Include="Assets\Scripts\Combat\CombatTarget.cs" />
-     <Compile Include="Assets\Scripts\Core\ActionScheduler.cs" />
+     <Compile Include="Assets\Scripts\SceneManagement\Portal.cs" />
+     <Compile Include="Assets\Scripts\SceneManagement\Fader.cs" />
+     <Compile Include="Assets\Asset Packs\8K Skybox Pack Free\Example Scenes\Script\RotateCamera.cs" />
      <Compile Include="Assets\Scripts\Core\IAction.cs" />
-     <Compile Include="Assets\Scripts\Combat\Health.cs" />
+     <Compile Include="Assets\Scripts\Cinematics\CinematicTrigger.cs" />
+     <Compile Include="Assets\Scripts\Control\AIController.cs" />
+     <Compile Include="Assets\Scripts\Combat\Fighter.cs" />
+     <Compile Include="Assets\Scripts\Movement\Mover.cs" />
+     <Compile Include="Assets\Scripts\Core\ActionScheduler.cs" />
+     <Compile Include="Assets\Scripts\Cinematics\CinematicControlRemover.cs" />
+     <Compile Include="Assets\Scripts\Core\PersistentObjectsSpawner.cs" />
      <None Include="Assets\Asset Packs\Synty - Polygon Student Sample\README - Usage Rights for these assets.txt" />
+     <None Include="Assets\Asset Packs\8K Skybox Pack Free\ReadMe.txt" />
      <None Include="Assets\Asset Packs\Animations by Explosive\README - Usage Rights for these assets 1.txt" />
     <Reference Include="UnityEngine">
         <HintPath>/Applications/Unity/Hub/Editor/2020.3.8f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -615,9 +624,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Cinemachine.csproj">
+      <Project>{70a8d1fa-f978-9349-eb28-0fa0ded914a2}</Project>
+      <Name>Cinemachine</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.VSCode.Editor.csproj">
       <Project>{a1a15e72-f0cf-5960-424c-59d09523d565}</Project>
       <Name>Unity.VSCode.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="com.unity.cinemachine.editor.csproj">
+      <Project>{f170b193-daad-8369-0a7c-63a6c1a54213}</Project>
+      <Name>com.unity.cinemachine.editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
       <Project>{e8f5b3cf-13b1-d759-ad13-0ac4e11ffbf2}</Project>

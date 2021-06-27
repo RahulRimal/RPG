@@ -8,11 +8,12 @@ namespace RPG.Core
     {
 
         [SerializeField] GameObject target;
-
+        [SerializeField] Vector3 offset;
         // Update is called once per frame
         void LateUpdate()
         {
-            transform.position = target.transform.position;
+            
+            transform.localPosition = target.transform.localPosition - offset;
         }
     }
 }
