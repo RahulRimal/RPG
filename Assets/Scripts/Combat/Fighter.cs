@@ -9,11 +9,24 @@ namespace RPG.Combat
     {
         Health target;
 
-        [SerializeField] float weaponRange = 5f;
+        
         [SerializeField] float timeBetweenAttacks = 1f;
-        [SerializeField] float weaponDamage = 30f;
+        [SerializeField] Transform rightHandTransform = null;
+        [SerializeField] Transform lefttHandTransform = null;
+        [SerializeField] Weapon defaultWeapon = null;
+        [SerializeField] string defaultWeaponName = "Unarmed";
+        
 
         float timeSinceLastAttack = Mathf.Infinity;
+
+        Weapon currentWeapon = null;
+
+
+        void Start()
+        {
+            Weapon weapon = Resources.Load<Weapon>(defaultWeaponName);
+            equipWeapon(weapon);
+        }
 
         void Update()
         {
@@ -31,6 +44,14 @@ namespace RPG.Combat
                 GetComponent<Mover>().cancel();
                 attackBehaviour();
             }
+        }
+
+        public void equipWeapon(Weapon weapon)
+        {
+            currentWeapon = weapon;
+            Animator animator = GetComponent<Animator>();
+            weapon.spawn(rightHandTransform,lefttHandTransform,  animator);
+
         }
 
         void attackBehaviour()
@@ -56,7 +77,18 @@ namespace RPG.Combat
         void hit()
         {
             if(target == null) return;
-            target.damage(weaponDamage);
+
+            if(currentWeapon.hasProjectile())
+                currentWeapon.launchProjectile(rightHandTransform, lefttHandTransform, target);
+            else
+                target.damage(currentWeapon.getDamage());
+
+            target.damage(currentWeapon.getDamage());
+        }
+
+        void shoot()
+        {
+            hit();
         }
 
         public bool canAttack(GameObject combatTarget)
@@ -70,7 +102,7 @@ namespace RPG.Combat
 
         bool getIsInRange()
         {
-            return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
+            return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.getRange();
         }
 
         public void attack(GameObject combatTarget)
